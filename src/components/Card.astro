@@ -5,7 +5,7 @@ interface Props {
 	href: string;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, image } = Astro.props;
 ---
 
 <li class="link-card">
@@ -17,6 +17,7 @@ const { href, title, body } = Astro.props;
 		<p>
 			{body}
 		</p>
+		<img src={`../../public/images/${image}`} />
 	</a>
 </li>
 <style>
@@ -57,5 +58,10 @@ const { href, title, body } = Astro.props;
 	}
 	.link-card:is(:hover, :focus-within) h2 {
 		color: rgb(var(--accent-light));
+	}
+
+	img {
+		max-width: 220px;
+		margin: 50px;
 	}
 </style>
