@@ -1,12 +1,19 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { imageMetadata } from 'astro/assets/utils';
+import { Image } from 'astro:assets';
+
 interface Props {
 	title: string;
 	body: string;
 	href: string;
-	image: string;
+	imagePath: string;
 }
 
-const { href, title, body, image } = Astro.props;
+const { href, title, body, imagePath } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/images/*.{jpeg,jpg,png,gif}');
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
+
 ---
 
 <li class="link-card">
@@ -18,7 +25,7 @@ const { href, title, body, image } = Astro.props;
 		<p>
 			{body}
 		</p>
-		<img src={`/src/images/${image}`} />
+		<Image src={images[imagePath]()} alt="huh"/>
 	</a>
 </li>
 <style>
