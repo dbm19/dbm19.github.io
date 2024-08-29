@@ -25,7 +25,7 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: 
 		<p>
 			{body}
 		</p>
-		<Image src={images[imagePath]()} alt="huh"/>
+		<Image src={images[imagePath]()} alt="huh" width="300" height="300"/>
 	</a>
 </li>
 <style>
@@ -67,9 +67,7 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: 
 	.link-card:is(:hover, :focus-within) h2 {
 		color: rgb(var(--accent-light));
 	}
-
 	img {
-		max-width: 220px;
-		margin: 50px;
+		padding: 20px
 	}
 </style>
